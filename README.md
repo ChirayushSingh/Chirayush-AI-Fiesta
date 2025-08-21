@@ -9,6 +9,8 @@
 
 ## ✨ Features
 
+## Preview Project Link:- https://preview--chirayush-ai-fiesta.lovable.app/
+
 ### 🎯 Multi-AI Chat Interface
 - **6 AI Models**: GPT-3.5 Turbo, Deepseek R1, Gemma 2 9B, Mistral 7B, Gemini 2.0 Flash, Gemini 1.5 Flash
 - **Side-by-Side Comparison**: Compare responses from multiple AIs simultaneously
@@ -176,6 +178,8 @@ npm run build
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Preview Project Link :- https://preview--chirayush-ai-fiesta.lovable.app/
+
 ## 🙏 Acknowledgments
 
 - [OpenRouter](https://openrouter.ai/) for AI model access
@@ -197,5 +201,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 </p>
 
 <p align="center">
-  Made with ❤️ using <a href="https://lovable.dev">Lovable</a>
+  Made with ❤️ By Chirayush Singh
 </p>
