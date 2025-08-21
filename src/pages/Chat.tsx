@@ -18,8 +18,11 @@ import {
   Code,
   ArrowLeft,
   Menu,
-  Settings
+  Settings,
+  Power,
+  PowerOff
 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { useNavigate } from "react-router-dom";
 
 interface Message {
@@ -304,12 +307,11 @@ const Chat = () => {
             {aiModels.map((model) => (
               <Card 
                 key={model.id}
-                className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
+                className={`transition-all duration-200 ${
                   selectedModels.includes(model.id) 
                     ? 'ring-2 ring-primary shadow-glow-primary bg-primary/10' 
                     : 'hover:bg-accent/20'
                 }`}
-                onClick={() => toggleModel(model.id)}
               >
                 <CardContent className="p-4 flex items-center gap-3">
                   <div className={model.color}>
@@ -319,11 +321,18 @@ const Chat = () => {
                     <h3 className="font-medium truncate">{model.name}</h3>
                     <p className="text-xs text-muted-foreground capitalize">{model.provider}</p>
                   </div>
-                  {selectedModels.includes(model.id) && (
-                    <Badge variant="secondary" className="text-xs">
-                      Active
-                    </Badge>
-                  )}
+                  <div className="flex items-center gap-2">
+                    <Switch
+                      checked={selectedModels.includes(model.id)}
+                      onCheckedChange={() => toggleModel(model.id)}
+                      className="data-[state=checked]:bg-primary"
+                    />
+                    {selectedModels.includes(model.id) ? (
+                      <Power className="h-4 w-4 text-primary" />
+                    ) : (
+                      <PowerOff className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -393,14 +402,46 @@ const Chat = () => {
               </div>
             )}
 
-            {messages.map((message) => (
-              <div key={message.id} className="space-y-2">
-                {message.role === 'user' ? (
+            {/* Group messages by conversation */}
+            {(() => {
+              const conversationGroups: Array<{userMessage: Message, aiResponses: Message[]}> = [];
+              let currentUserMessage: Message | null = null;
+              let currentAiResponses: Message[] = [];
+
+              messages.forEach((message) => {
+                if (message.role === 'user') {
+                  // If we have a previous conversation, save it
+                  if (currentUserMessage) {
+                    conversationGroups.push({
+                      userMessage: currentUserMessage,
+                      aiResponses: currentAiResponses
+                    });
+                  }
+                  // Start new conversation
+                  currentUserMessage = message;
+                  currentAiResponses = [];
+                } else {
+                  // Add AI response to current conversation
+                  currentAiResponses.push(message);
+                }
+              });
+
+              // Add the last conversation if exists
+              if (currentUserMessage) {
+                conversationGroups.push({
+                  userMessage: currentUserMessage,
+                  aiResponses: currentAiResponses
+                });
+              }
+
+              return conversationGroups.map((conversation, index) => (
+                <div key={conversation.userMessage.id} className="space-y-4">
+                  {/* User Message */}
                   <div className="flex justify-end">
                     <div className="flex items-end gap-3 max-w-[80%]">
                       <Card className="bg-primary text-primary-foreground">
                         <CardContent className="p-4">
-                          <p className="whitespace-pre-wrap">{message.content}</p>
+                          <p className="whitespace-pre-wrap">{conversation.userMessage.content}</p>
                         </CardContent>
                       </Card>
                       <div className="p-2 rounded-full bg-primary text-primary-foreground">
@@ -408,29 +449,42 @@ const Chat = () => {
                       </div>
                     </div>
                   </div>
-                ) : (
-                  <div className="flex justify-start">
-                    <div className="flex items-start gap-3 max-w-[80%]">
-                      <div className="p-2 rounded-full bg-gradient-primary text-primary-foreground">
-                        <Bot className="h-4 w-4" />
-                      </div>
-                      <div className="space-y-2">
-                        <Card className="bg-card border-border/50">
-                          <CardContent className="p-4">
-                            <div className="flex items-center gap-2 mb-2">
-                              <Badge variant="secondary" className="text-xs">
-                                {message.model}
-                              </Badge>
-                            </div>
-                            <p className="whitespace-pre-wrap">{message.content}</p>
-                          </CardContent>
-                        </Card>
-                      </div>
+
+                  {/* AI Responses in Vertical Comparison Layout */}
+                  {conversation.aiResponses.length > 0 && (
+                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                      {conversation.aiResponses.map((aiMessage) => {
+                        const modelInfo = aiModels.find(m => m.name === aiMessage.model);
+                        return (
+                          <Card key={aiMessage.id} className="bg-card border-border/50 hover:shadow-glow-primary/20 transition-all duration-200">
+                            <CardContent className="p-4">
+                              <div className="flex items-center gap-2 mb-3">
+                                <div className={modelInfo?.color || 'text-primary'}>
+                                  {modelInfo?.icon || <Bot className="h-4 w-4" />}
+                                </div>
+                                <Badge variant="secondary" className="text-xs font-medium">
+                                  {aiMessage.model}
+                                </Badge>
+                              </div>
+                              <div className="prose prose-sm max-w-none">
+                                <p className="whitespace-pre-wrap text-sm leading-relaxed">
+                                  {aiMessage.content}
+                                </p>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        );
+                      })}
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+
+                  {/* Add separator between conversations except for the last one */}
+                  {index < conversationGroups.length - 1 && (
+                    <Separator className="my-8 bg-border/30" />
+                  )}
+                </div>
+              ));
+            })()}
 
             {isLoading && (
               <div className="flex justify-start">
