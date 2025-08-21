@@ -2,14 +2,14 @@
 
 > Access GPT, Claude, Gemini & more instantly. Compare all AIs at once with unlimited power.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://lovable.dev/projects/af2bc877-cdec-455e-9422-bfb3b910b8d6)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://projects/af2bc877-cdec-455e-9422-bfb3b910b8d6)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
 ## ✨ Features
 
-## Preview Project Link:- https://preview--chirayush-ai-fiesta.lovable.app/
+## Preview Project Link:- https://chirayush-ai-fiesta-b0w0.bolt.host/
 
 ### 🎯 Multi-AI Chat Interface
 - **6 AI Models**: GPT-3.5 Turbo, Deepseek R1, Gemma 2 9B, Mistral 7B, Gemini 2.0 Flash, Gemini 1.5 Flash
@@ -39,7 +39,7 @@
 - **API Integration**: OpenRouter API, Google Gemini API
 - **Icons**: Lucide React
 - **Build Tool**: Vite
-- **Deployment**: Lovable Platform
+- **Deployment**: GitHub
 
 ## 🚀 Quick Start
 
@@ -153,8 +153,8 @@ The application requires API keys from:
 
 ## 🚀 Deployment
 
-### Using Lovable
-1. Visit your [Lovable Project](https://lovable.dev/projects/af2bc877-cdec-455e-9422-bfb3b910b8d6)
+### Using GitHub
+1. Visit your [Chirayush AI Fiesta](https://chirayush-ai-fiesta-b0w0.bolt.host/)
 2. Click Share → Publish
 3. Your app will be live instantly
 
@@ -178,7 +178,7 @@ npm run build
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Preview Project Link :- https://preview--chirayush-ai-fiesta.lovable.app/
+## Preview Project Link :- https://chirayush-ai-fiesta-b0w0.bolt.host/
 
 ## 🙏 Acknowledgments
 
@@ -186,13 +186,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Google AI Studio](https://aistudio.google.com/) for Gemini models
 - [shadcn/ui](https://ui.shadcn.com/) for beautiful components
 - [Tailwind CSS](https://tailwindcss.com/) for styling utilities
-- [Lovable](https://lovable.dev/) for development platform
+- [GitHub](https://chirayush-ai-fiesta-b0w0.bolt.host/) for developmennt Platform.
 
 ## 📞 Contact
 
-- **Project Link**: [https://lovable.dev/projects/af2bc877-cdec-455e-9422-bfb3b910b8d6](https://lovable.dev/projects/af2bc877-cdec-455e-9422-bfb3b910b8d6)
-- **GitHub**: [Your GitHub Profile]
-- **Email**: [Your Email]
+- **Project Link**: https://chirayush-ai-fiesta-b0w0.bolt.host/
+- **GitHub**: [https://github.com/ChirayushSingh]
+- **Email**: [chirayush07@gmail.com]
 
 ---
 
